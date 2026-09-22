@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "Space Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink: #0b0b0b;
+  --color-coal: #161513;
+  --color-bone: #ece7df;
+  --color-fog: #8a857c;
+  --color-flame: #ff4b1f;
+
+  --animate-marquee: marquee 24s linear infinite;
+  --animate-spin-slow: rot 18s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes rot {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--color-bone);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-flame);
+  color: var(--color-ink);
+}
+
+html {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (pointer: fine) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink) var(--color-bone);
+  }
+
+  ::-webkit-scrollbar {
+    display: block;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bone);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink);
+    border: 2px solid var(--color-bone);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-flame);
+  }
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [data-hover] {
+    cursor: none;
+  }
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1.5px var(--color-ink);
+  color: transparent;
+}
+
+.text-stroke-bone {
+  -webkit-text-stroke: 1.5px var(--color-bone);
+  color: transparent;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
